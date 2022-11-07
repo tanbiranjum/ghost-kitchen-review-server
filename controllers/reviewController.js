@@ -72,4 +72,58 @@ exports.getReview = async (req, res, next) => {
 // @route   PUT api/v1/reviews/:id
 // @desc    Update a review
 // @access  Private
-exports.updateReview = async (req, res, next) => {};
+exports.updateReview = async (req, res, next) => {
+  try {
+    const review = await Review.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    if (!review) {
+      return res.status(404).json({
+        success: false,
+        error: "No review found",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      data: review,
+    });
+  } catch (err) {
+    if (err.name === "ValidationError") {
+      const messages = Object.values(err.errors).map((val) => val.message);
+      return res.status(400).json({
+        success: false,
+        error: messages,
+      });
+    } else {
+      return res.status(500).json({
+        success: false,
+        error: "Server Error",
+      });
+    }
+  }
+};
+
+// @route   DELETE api/v1/reviews/:id
+// @desc    Delete a review
+// @access  Private
+exports.deleteReview = async (req, res, next) => {
+  try {
+    const review = await Review.findByIdAndDelete(req.params.id);
+    if (!review) {
+      return res.status(404).json({
+        success: false,
+        error: "No review found",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      data: {},
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      error: "Server Error",
+    });
+  }
+};
