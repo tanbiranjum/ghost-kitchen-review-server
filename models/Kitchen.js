@@ -7,12 +7,6 @@ const kitchenSchema = new mongoose.Schema({
   website: String,
   description: String,
   image: String,
-  reviews: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Review",
-    },
-  ],
 });
 
 const Kitchen = mongoose.model("Kitchen", kitchenSchema);

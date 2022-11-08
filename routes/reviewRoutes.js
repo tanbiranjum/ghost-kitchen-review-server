@@ -9,7 +9,8 @@ const {
   deleteReview,
 } = require("../controllers/reviewController");
 
-router.route("/").get(getReviews).post(protect, createReview);
+// !TODO
+router.route("/").get(getReviews).post(createReview);
 
 router
   .route("/:id")
