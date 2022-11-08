@@ -8,10 +8,12 @@ const {
   updateReview,
   deleteReview,
   getReviewsForKitchen,
+  getReviewsForUser,
 } = require("../controllers/reviewController");
 
 // !TODO
 router.route("/").get(getReviews).post(protect, createReview);
+router.route("/user/:uid").get(protect, getReviewsForUser);
 
 router
   .route("/:id")

@@ -88,6 +88,25 @@ exports.getReviewsForKitchen = async (req, res, next) => {
   }
 };
 
+// @route   GET api/v1/reviews/user/:uid
+// @desc    Get reviews for a user
+// @access  Private
+exports.getReviewsForUser = async (req, res, next) => {
+  try {
+    const reviews = await Review.find({ user: req.params.uid });
+    return res.status(200).json({
+      success: true,
+      count: reviews.length,
+      data: reviews,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      error: "Server Error",
+    });
+  }
+};
+
 // @route   PUT api/v1/reviews/:id
 // @desc    Update a review
 // @access  Private
