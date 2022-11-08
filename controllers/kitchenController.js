@@ -5,10 +5,18 @@ const Kitchen = require("../models/Kitchen");
 // @access  Public
 exports.getKitchens = async (req, res, next) => {
   try {
-    const kitchens = await Kitchen.find();
+    let query = Kitchen.find();
+    const limit = parseInt(req.query.limit, 10) || 25;
+    const skip = parseInt(req.query.skip, 10) || 0;
+    let total = await Kitchen.countDocuments();
+    const totalPage = Math.ceil(total / limit);
+
+    query = query.skip(skip).limit(limit);
+    const kitchens = await query;
     return res.status(200).json({
       success: true,
       count: kitchens.length,
+      total,
       data: kitchens,
     });
   } catch (err) {

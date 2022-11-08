@@ -2,12 +2,17 @@ const mongoose = require("mongoose");
 
 const reviewSchema = new mongoose.Schema({
   content: String,
-  rating: Number,
-  kitchen: {
+  kitchenId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Kitchen",
   },
+  displayName: String,
   uid: String,
+  userEmail: String,
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 const Review = mongoose.model("Review", reviewSchema);

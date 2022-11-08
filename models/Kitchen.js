@@ -7,6 +7,8 @@ const kitchenSchema = new mongoose.Schema({
   website: String,
   description: String,
   image: String,
+  price: Number,
+  rating: Number,
 });
 
 const Kitchen = mongoose.model("Kitchen", kitchenSchema);
