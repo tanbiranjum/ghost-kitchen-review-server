@@ -9,10 +9,10 @@ app.use(morgan("dev"));
 
 const kitchenRoutes = require("./routes/kitchenRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
-const userRoutes = require("./routes/userRoutes");
+const authRoutes = require("./routes/authRoutes");
 
 app.use("/api/v1/kitchens", kitchenRoutes);
 app.use("/api/v1/reviews", reviewRoutes);
-app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/auth", authRoutes);
 
 module.exports = app;
