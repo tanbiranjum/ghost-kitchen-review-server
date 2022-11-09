@@ -11,6 +11,12 @@ const kitchenRoutes = require("./routes/kitchenRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const authRoutes = require("./routes/authRoutes");
 
+app.get("/", (req, res) => {
+  res.send(
+    "<h4>Hello from the server!!!</h4> </br> Go to this url 👉 <a href='https://ghost-kitchen-server.vercel.app/'>Frontend Application</a>"
+  );
+});
+
 app.use("/api/v1/kitchens", kitchenRoutes);
 app.use("/api/v1/reviews", reviewRoutes);
 app.use("/api/v1/auth", authRoutes);
