@@ -24,7 +24,17 @@ exports.getReviews = async (req, res, next) => {
 // @access  Private
 exports.createReview = async (req, res, next) => {
   try {
-    const review = await Review.create(req.body);
+    console.log(req.body);
+    const { uid, kitchenId, content, userEmail, photoURL, displayName } =
+      req.body;
+    const review = await Review.create({
+      uid,
+      kitchenId,
+      content,
+      userEmail,
+      photoURL,
+      displayName,
+    });
     return res.status(201).json({
       success: true,
       data: review,
