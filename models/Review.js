@@ -9,6 +9,7 @@ const reviewSchema = new mongoose.Schema({
   displayName: String,
   uid: String,
   userEmail: String,
+  photoURL: String,
   createdAt: {
     type: Date,
     default: Date.now,
