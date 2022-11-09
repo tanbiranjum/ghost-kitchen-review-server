@@ -13,7 +13,6 @@ const {
 
 // !TODO
 router.route("/").get(getReviews).post(protect, createReview);
-router.route("/user/:uid").get(protect, getReviewsForUser);
 
 router
   .route("/:id")
@@ -21,6 +20,7 @@ router
   .put(protect, updateReview)
   .delete(protect, deleteReview);
 
+router.route("/user/:uid").get(protect, getReviewsForUser);
 router.route("/kitchens/:kitchenId").get(getReviewsForKitchen);
 
 module.exports = router;

@@ -8,7 +8,14 @@ const kitchenSchema = new mongoose.Schema({
   description: String,
   image: String,
   price: Number,
-  rating: Number,
+  rating: {
+    type: Number,
+    default: Math.floor(Math.random() * (5 - 3 + 1) + 3),
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 const Kitchen = mongoose.model("Kitchen", kitchenSchema);

@@ -11,7 +11,7 @@ exports.getKitchens = async (req, res, next) => {
     let total = await Kitchen.countDocuments();
     const totalPage = Math.ceil(total / limit);
 
-    query = query.skip(skip).limit(limit);
+    query = query.sort({ createdAt: -1 }).skip(skip).limit(limit);
     const kitchens = await query;
     return res.status(200).json({
       success: true,

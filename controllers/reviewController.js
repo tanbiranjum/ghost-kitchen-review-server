@@ -74,7 +74,9 @@ exports.getReview = async (req, res, next) => {
 // @access  Public
 exports.getReviewsForKitchen = async (req, res, next) => {
   try {
-    const reviews = await Review.find({ kitchen: req.params.kitchenId });
+    const reviews = await Review.find({ kitchenId: req.params.kitchenId }).sort(
+      { createdAt: -1 }
+    );
     return res.status(200).json({
       success: true,
       count: reviews.length,
@@ -93,7 +95,9 @@ exports.getReviewsForKitchen = async (req, res, next) => {
 // @access  Private
 exports.getReviewsForUser = async (req, res, next) => {
   try {
-    const reviews = await Review.find({ user: req.params.uid });
+    const reviews = await Review.find({ uid: req.params.uid }).sort({
+      createdAt: -1,
+    });
     return res.status(200).json({
       success: true,
       count: reviews.length,
